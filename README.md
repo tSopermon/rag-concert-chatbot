@@ -1,6 +1,6 @@
 # Concert Chatbot
 
-A Streamlit-powered chatbot that answers questions about concerts using LangChain and SerpAPI, with optional Ollama model support.
+A Streamlit-powered chatbot that answers questions about concerts using LangChain and SerpAPI, with Ollama model support.
 
 ![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-00A67E?style=for-the-badge)
@@ -10,15 +10,15 @@ A Streamlit-powered chatbot that answers questions about concerts using LangChai
 - Real-time concert information via SerpAPI
 - Natural language Q&A about events
 - Docker support for easy deployment
-- Optional Ollama LLM integration
+- Ollama LLM integration
 
 ## Installation
 
 ### Local Development
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/concert-chatbot.git
-   cd concert-chatbot
+   git clone https://github.com/tSopermon/ProvectusInternship_NikolaosTsopanidis.git
+   cd ProvectusInternship_NikolaosTsopanidis
    ```
 2. Set up a virtual environment:
    ```bash
@@ -34,20 +34,26 @@ A Streamlit-powered chatbot that answers questions about concerts using LangChai
    ```bash
    echo "SERPAPI_API_KEY=your_key_here" > .env
    ```
-### Docker Setup
-1. Build the image:
+
+### Ollama Setup
+**Important**: The Concert Chatbot relies on Ollama models for its core functionality. Specifically, it requires nomic-embed-text for embeddings and llama3.1:8b for answering and summarizing. Without these models, the app will not function as intended. Follow the steps below to install and set up Ollama:
+1. Install Ollama:
+ * Download and install Ollama from the official Ollama [download page](https://ollama.com/download). Follow the instructions specific to your operating system.
+2. Pull the required models:
+ * Open a terminal and run the following commands to download the necessary models:
    ```bash
-   docker build -t concert-chatbot .
+   ollama pull nomic-embed-text
+   ollama pull llama3.1:8b
    ```
-2. Run the container:
+3. Start the Ollama server:
+ * Ensure the Ollama server is running by executing:
    ```bash
-   docker run -p 8501:8501 -e SERPAPI_API_KEY=your_key_here concert-chatbot
+   ollama serve
    ```
+
 ## Running the App
 
-To run the Streamlit app, you can either use Docker or run it locally.
-
-### Local
+To use the Streamlit app, you can run it locally.
 1. Ensure your virtual environment is activated.
 2. Install Streamlit:
    ```bash
@@ -58,20 +64,7 @@ To run the Streamlit app, you can either use Docker or run it locally.
    streamlit run src/app.py
    ```
 
-### Docker
-If you're using Docker, follow these steps:
-
-1. Build the Docker image:
-   ```bash
-   docker build -t concert-chatbot .
-   ```
-2. Run the Docker container:
-   ```bash
-   docker run -p 8501:8501 -e SERPAPI_API_KEY=your_key_here concert-chatbot
-   ```
-
 ### Accessing the App
-
 Once the app is running, you can access it at `http://localhost:8501` in your web browser.
 
 ## Usage
@@ -101,23 +94,15 @@ Make sure you have Python 3.8+ installed and follow these steps:
 
 1. Clone this repository:
    ```bash
-   git clone
-Start the Streamlit application:
+   git clone https://github.com/tSopermon/ProvectusInternship_NikolaosTsopanidis.git
+   cd ProvectusInternship_NikolaosTsopanidis
+2. Set up the virtual environment and install dependencies as described in the "Installation" section.
+3. Complete the "Ollama Setup" steps to install and run the required models.
+4. Start the Streamlit application:
    ```bash
    streamlit run src/app.py
    ```
-
 The app will be available at `http://localhost:8501`
-
-## Ollama Setup
-For local LLM functionality:
-1. Install [Ollama](https://ollama.com/download)
-2. Pull required models:
-   ```bash
-   ollama pull nomic-embed-text
-   ollama pull llama3:8b
-   ```
-3. Ensure Ollama server is running
 
 ## Configuration
 Edit `.env` to customize:
