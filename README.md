@@ -7,14 +7,51 @@ A Streamlit-powered chatbot that answers questions about concerts using LangChai
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-FFD43B?style=for-the-badge)
 
 ## Features
-- Real-time concert information via SerpAPI
 - Natural language Q&A about events
-- Docker support for easy deployment
 - Ollama LLM integration
+- Real-time concert information via SerpAPI
+
+## Development Process of the App
+
+The Concert Chatbot is a web app that answers questions about concerts using **Retrieval-Augmented Generation (RAG)**. Built with **LangChain**, **Ollama**, **Streamlit**, and **SerpAPI**, it processes concert documents and fetches real-time event data. For a detailed look at the code and explanations, see the Jupyter Notebook: `notebooks/app_description.ipynb`.
+
+1. **Setup**\
+   Installed dependencies like **Streamlit** (web interface), **LangChain** (RAG pipelines), **langchain-ollama**/**langchain-chroma** (model and vector storage), and **SerpAPI** (event data).
+
+2. **Model Configuration**\
+   Used **Ollama** to set up:
+
+   - **nomic-embed-text**: Creates vector embeddings for text.
+   - **llama3.1:8b**: Generates summaries and responses with strict grounding.
+
+3. **Document Processing**\\
+
+   - Validated concert documents with `is_concert_related` using keywords (e.g., "concert").
+   - Summarized valid documents with the LLM and `ChatPromptTemplate`.
+   - Split summaries into chunks (`RecursiveCharacterTextSplitter`) and stored vectors in **Chroma**.
+
+4. **Event Retrieval**\
+   Used **SerpAPI** (`get_events_for_artist`) to fetch and summarize up to three concert events, stored in Chroma.
+
+5. **RAG Pipeline**\\
+
+   - Configured a **Chroma** retriever to fetch top 5 relevant chunks.
+   - Used `create_history_aware_retriever` for context-aware retrieval.
+   - Combined retrieval and LLM with `create_retrieval_chain` for conversational answers.
+
+6. **Streamlit Interface**\\
+
+   - **Sidebar**: Upload documents or search events.
+   - **Chat Interface**: Ask questions, view responses, and conversation history (`st.session_state`).
+   - Added error handling for empty inputs.
+
+7. **Testing**\
+   Ensured document validation, event retrieval, and RAG accuracy. Inspired by LangChain docs and Medium articles.
+
+The result is a robust chatbot for concert enthusiasts. Explore details in `notebooks/app_description.ipynb`.
 
 ## Installation
 
-### Local Development
 1. Clone the repository:
    ```bash
    git clone https://github.com/tSopermon/ProvectusInternship_NikolaosTsopanidis.git
@@ -69,9 +106,19 @@ Once the app is running, you can access it at `http://localhost:8501` in your we
 
 ## Usage
 
-- Enter a question about concerts in the input box.
-- Click "Ask" to get real-time answers.
-- Use the "Ollama" toggle to switch between local LLM and SerpAPI responses.
+### How to Use the App
+
+1. **Upload a Concert Document**  
+   - Use the sidebar's text box to enter a concert-related document.  
+   - Press the "Upload" button to update the database and generate a summary of the document.
+
+2. **Ask Questions**  
+   - Once the document is uploaded, type your question about the document in the main input box.  
+   - The app will provide accurate answers based on the uploaded content.
+
+3. **Explore Concert Information**  
+   - Search for upcoming concerts or events by entering an artist's name.  
+   - Get real-time details like dates and locations using SerpAPI integration.
 
 ## Contributing
 
@@ -96,6 +143,7 @@ Make sure you have Python 3.8+ installed and follow these steps:
    ```bash
    git clone https://github.com/tSopermon/ProvectusInternship_NikolaosTsopanidis.git
    cd ProvectusInternship_NikolaosTsopanidis
+   ```
 2. Set up the virtual environment and install dependencies as described in the "Installation" section.
 3. Complete the "Ollama Setup" steps to install and run the required models.
 4. Start the Streamlit application:

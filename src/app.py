@@ -1,9 +1,3 @@
-"""
-Code was inspired by the implementations described in the following sites
-* https://medium.com/@mrcoffeeai/conversational-chatbot-trained-on-own-data-streamlit-and-langchain-a45ea5a9dc0f
-* https://github.com/y-pred/Langchain/blob/main/Langchain%202.0/RAG_Conversational_Chatbot.ipynb
-* https://python.langchain.com/v0.2/docs/tutorials/local_rag/
-"""
 import traceback
 import streamlit as st
 from utils.text_input import is_concert_related, get_vector_store
@@ -13,7 +7,6 @@ from utils.serpapi_function import get_events_for_artist
 from langchain_core.messages import AIMessage
 from config import SERPAPI_API_KEY, embeddings, llm, CONCERT_RELATED_KEYWORDS, SUMMARY_INSTRUCTIONS
 
-# ---------------------------------------------------------------------------------------------------------------
 # initializing the vector store and chat history ----------------------------------------------------------------
 chat_history=[]
 vector_store=[]
@@ -39,7 +32,7 @@ if st.sidebar.button("Upload Document", key="doc_submit_button"):
                 if "chat_history" not in st.session_state:
                     st.session_state.chat_history = []
                 if "vector_store" not in st.session_state:
-                    st.session_state.vector_store = get_vector_store(doc_text, embeddings)  # Use full text for consistency
+                    st.session_state.vector_store = get_vector_store(summary, embeddings)
                     st.session_state.last_text = summary
                 st.success("Your document has been successfully added to the database.")
                 st.write(summary)
@@ -61,7 +54,7 @@ if st.sidebar.button("Search Events", key="event_submit_button"):
                 if "chat_history" not in st.session_state:
                     st.session_state.chat_history = []
                 if "vector_store" not in st.session_state:
-                    st.session_state.vector_store = get_vector_store(events, embeddings)  # Use full events text
+                    st.session_state.vector_store = get_vector_store(summary, embeddings)
                     st.session_state.last_text = summary
                 st.success(f"The upcoming events of {artist_name} have been successfully added to the database.")
                 st.write(summary)
