@@ -94,7 +94,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [LangChain](https://langchain.readthedocs.io/)
 - [SerpAPI](https://serpapi.com/)
 - [Ollama](https://ollama.com/)
-```
 
 ## How to Run Locally
 
