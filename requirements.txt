@@ -1,0 +1,11 @@
+traceback
+streamlit
+langchain-ollama
+langchain-chroma
+transformers
+langchain-core
+langchain-text-splitters
+langchain-chains
+torch
+serpapi
+google-search-results
