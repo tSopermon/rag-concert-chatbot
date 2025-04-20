@@ -45,10 +45,7 @@ The Concert Chatbot is a web app that answers questions about concerts using **R
    - **Chat Interface**: Ask questions, view responses, and conversation history (`st.session_state`).
    - Added error handling for empty inputs.
 
-7. **Testing**
-   Ensured document validation, event retrieval, and RAG accuracy. Inspired by LangChain docs and Medium articles.
-
-The result is a robust chatbot for concert enthusiasts. Explore details in [`notebooks/app_description.ipynb`](notebooks/app_description.ipynb).
+Explore details in [`notebooks/app_description.ipynb`](notebooks/app_description.ipynb).
 
 ## Installation
 
