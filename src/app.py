@@ -11,7 +11,7 @@ from utils.summary_generation import generate_summary
 from utils.rag_chains import get_response
 from utils.serpapi_function import get_events_for_artist
 from langchain_core.messages import AIMessage
-from config import SERPAPI_API_KEY, embeddings, summarizer, llm, CONCERT_RELATED_KEYWORDS, SUMMARY_INSTRUCTIONS
+from config import SERPAPI_API_KEY, embeddings, llm, CONCERT_RELATED_KEYWORDS, SUMMARY_INSTRUCTIONS
 
 # ---------------------------------------------------------------------------------------------------------------
 # initializing the vector store and chat history ----------------------------------------------------------------
@@ -35,7 +35,7 @@ if st.sidebar.button("Upload Document", key="doc_submit_button"):
     else:
         with st.spinner("Processing document..."):
             try:
-                summary = generate_summary(doc_text, SUMMARY_INSTRUCTIONS, summarizer, llm)
+                summary = generate_summary(doc_text, SUMMARY_INSTRUCTIONS, llm)
                 if "chat_history" not in st.session_state:
                     st.session_state.chat_history = []
                 if "vector_store" not in st.session_state:
@@ -57,7 +57,7 @@ if st.sidebar.button("Search Events", key="event_submit_button"):
         with st.spinner(f"Searching concerts for {artist_name}..."):
             try:
                 events = get_events_for_artist(artist_name, SERPAPI_API_KEY)
-                summary = generate_summary(events, SUMMARY_INSTRUCTIONS, summarizer, llm)
+                summary = generate_summary(events, SUMMARY_INSTRUCTIONS, llm)
                 if "chat_history" not in st.session_state:
                     st.session_state.chat_history = []
                 if "vector_store" not in st.session_state:

@@ -1,6 +1,6 @@
 from langchain_core.prompts import ChatPromptTemplate
 
-def generate_summary(text, instructions, summarizer, llm):
+def generate_summary(text, instructions, llm):
     """
     Generate a custom summary of the text using the specified instructions.
     args:
@@ -19,10 +19,7 @@ def generate_summary(text, instructions, summarizer, llm):
     try:
         chain = summary_prompt | llm
         response = chain.invoke({"instructions": instructions, "text": text})
-        return response.content.strip()
     except Exception as e:
-        print(f"Error in custom summary: {e}")
-        # Fallback to bart-large-cnn if ChatOllama fails
-        summary = summarizer(text, max_length=200, min_length=30, do_sample=False)
+        print(f"Error generating summary: {e}")
 
-        return summary[0]['summary_text']
+    return response.content.strip()
