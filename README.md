@@ -13,7 +13,7 @@ A Streamlit-powered chatbot that answers questions about concerts using LangChai
 
 ## Development Process of the App
 
-The Concert Chatbot is a web app that answers questions about concerts using **Retrieval-Augmented Generation (RAG)**. Built with **LangChain**, **Ollama**, **Streamlit**, and **SerpAPI**, it processes concert documents and fetches real-time event data. For a detailed look at the code and explanations, see the Jupyter Notebook: `notebooks/app_description.ipynb`.
+The Concert Chatbot is a web app that answers questions about concerts using **Retrieval-Augmented Generation (RAG)**. Built with **LangChain**, **Ollama**, **Streamlit**, and **SerpAPI**, it processes concert documents and fetches real-time event data. For a detailed look at the code and explanations, see the Jupyter Notebook: [`notebooks/app_description.ipynb`](notebooks/app_description.ipynb).
 
 1. **Setup**\
    Installed dependencies like **Streamlit** (web interface), **LangChain** (RAG pipelines), **langchain-ollama**/**langchain-chroma** (model and vector storage), and **SerpAPI** (event data).
@@ -24,7 +24,7 @@ The Concert Chatbot is a web app that answers questions about concerts using **R
    - **nomic-embed-text**: Creates vector embeddings for text.
    - **llama3.1:8b**: Generates summaries and responses with strict grounding.
 
-3. **Document Processing**\\
+3. **Document Processing**\
 
    - Validated concert documents with `is_concert_related` using keywords (e.g., "concert").
    - Summarized valid documents with the LLM and `ChatPromptTemplate`.
@@ -33,22 +33,22 @@ The Concert Chatbot is a web app that answers questions about concerts using **R
 4. **Event Retrieval**\
    Used **SerpAPI** (`get_events_for_artist`) to fetch and summarize up to three concert events, stored in Chroma.
 
-5. **RAG Pipeline**\\
+5. **RAG Pipeline**\
 
    - Configured a **Chroma** retriever to fetch top 5 relevant chunks.
    - Used `create_history_aware_retriever` for context-aware retrieval.
    - Combined retrieval and LLM with `create_retrieval_chain` for conversational answers.
 
-6. **Streamlit Interface**\\
+6. **Streamlit Interface**\
 
    - **Sidebar**: Upload documents or search events.
    - **Chat Interface**: Ask questions, view responses, and conversation history (`st.session_state`).
    - Added error handling for empty inputs.
 
-7. **Testing**\
+7. **Testing**
    Ensured document validation, event retrieval, and RAG accuracy. Inspired by LangChain docs and Medium articles.
 
-The result is a robust chatbot for concert enthusiasts. Explore details in `notebooks/app_description.ipynb`.
+The result is a robust chatbot for concert enthusiasts. Explore details in [`notebooks/app_description.ipynb`](notebooks/app_description.ipynb).
 
 ## Installation
 
@@ -88,28 +88,13 @@ The result is a robust chatbot for concert enthusiasts. Explore details in `note
    ollama serve
    ```
 
-## Running the App
-
-To use the Streamlit app, you can run it locally.
+### Running the App
 1. Ensure your virtual environment is activated.
-2. Install Streamlit:
-   ```bash
-   pip install streamlit
-   ```
-3. Run the application:
+2. Run the application:
    ```bash
    streamlit run src/app.py
    ```
-
-### Configuration
-Edit `.env` to customize:
-   ```env
-   SERPAPI_API_KEY=your_api_key
-   ```
-
-### Accessing the App
-Once the app is running, you can access it at `http://localhost:8501` in your web browser.
-
+3. Once the app is running, you can access it at `http://localhost:8501` in your web browser.
 
 ## How to Use the App
 
@@ -135,12 +120,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-* https://medium.com/@aminajavaid30/building-a-rag-system-the-data-ingestion-pipeline-d04235fd17ea
-* https://medium.com/@laddhaakshatrai/how-to-perform-data-ingestion-with-langchain-day-12-100-f11288d7ae99
-* https://www.hostinger.com/tutorials/what-is-ollama#Key_features_of_Ollama
-* https://medium.com/@danushidk507/rag-with-llama-using-ollama-a-deep-dive-into-retrieval-augmented-generation-c58b9a1cfcd3
-* https://medium.com/@jiangan0808/retrieval-augmented-generation-rag-with-open-source-hugging-face-llms-using-langchain-bd618371be9d
-* https://python.langchain.com/docs/tutorials/rag/
-* https://python.langchain.com/v0.2/docs/tutorials/local_rag/
-* https://medium.com/@mrcoffeeai/conversational-chatbot-trained-on-own-data-streamlit-and-langchain-a45ea5a9dc0f
-* https://github.com/y-pred/Langchain/blob/main/Langchain%202.0/RAG_Conversational_Chatbot.ipynb
+* [Amina Javaid](https://medium.com/@aminajavaid30/building-a-rag-system-the-data-ingestion-pipeline-d04235fd17ea)
+* [Akshat Rai Laddha](https://medium.com/@laddhaakshatrai/how-to-perform-data-ingestion-with-langchain-day-12-100-f11288d7ae99)
+* [Ariffud Muhammad](https://www.hostinger.com/tutorials/what-is-ollama#Key_features_of_Ollama)
+* [DhanushKumar](https://medium.com/@danushidk507/rag-with-llama-using-ollama-a-deep-dive-into-retrieval-augmented-generation-c58b9a1cfcd3)
+* [An Jiang](https://medium.com/@jiangan0808/retrieval-augmented-generation-rag-with-open-source-hugging-face-llms-using-langchain-bd618371be9d)
+* [LangChain.com RAG App tutorial](https://python.langchain.com/docs/tutorials/rag/)
+* [LangChain.com Local RAG tutorial](https://python.langchain.com/v0.2/docs/tutorials/local_rag/)
+* [Ashish Malhotra](https://medium.com/@mrcoffeeai/conversational-chatbot-trained-on-own-data-streamlit-and-langchain-a45ea5a9dc0f)
+* [Ashish Malhotra/y-pred](https://github.com/y-pred/Langchain/blob/main/Langchain%202.0/RAG_Conversational_Chatbot.ipynb)
