@@ -101,12 +101,17 @@ To use the Streamlit app, you can run it locally.
    streamlit run src/app.py
    ```
 
+### Configuration
+Edit `.env` to customize:
+   ```env
+   SERPAPI_API_KEY=your_api_key
+   ```
+
 ### Accessing the App
 Once the app is running, you can access it at `http://localhost:8501` in your web browser.
 
-## Usage
 
-### How to Use the App
+## How to Use the App
 
 1. **Upload a Concert Document**  
    - Use the sidebar's text box to enter a concert-related document.  
@@ -130,30 +135,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Acknowledgments
 
-- [Streamlit](https://streamlit.io/)
-- [LangChain](https://langchain.readthedocs.io/)
-- [SerpAPI](https://serpapi.com/)
-- [Ollama](https://ollama.com/)
-
-## How to Run Locally
-
-Make sure you have Python 3.8+ installed and follow these steps:
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/tSopermon/ProvectusInternship_NikolaosTsopanidis.git
-   cd ProvectusInternship_NikolaosTsopanidis
-   ```
-2. Set up the virtual environment and install dependencies as described in the "Installation" section.
-3. Complete the "Ollama Setup" steps to install and run the required models.
-4. Start the Streamlit application:
-   ```bash
-   streamlit run src/app.py
-   ```
-The app will be available at `http://localhost:8501`
-
-## Configuration
-Edit `.env` to customize:
-   ```env
-   SERPAPI_API_KEY=your_api_key
-   ```
+* https://medium.com/@aminajavaid30/building-a-rag-system-the-data-ingestion-pipeline-d04235fd17ea
+* https://medium.com/@laddhaakshatrai/how-to-perform-data-ingestion-with-langchain-day-12-100-f11288d7ae99
+* https://www.hostinger.com/tutorials/what-is-ollama#Key_features_of_Ollama
+* https://medium.com/@danushidk507/rag-with-llama-using-ollama-a-deep-dive-into-retrieval-augmented-generation-c58b9a1cfcd3
+* https://medium.com/@jiangan0808/retrieval-augmented-generation-rag-with-open-source-hugging-face-llms-using-langchain-bd618371be9d
+* https://python.langchain.com/docs/tutorials/rag/
+* https://python.langchain.com/v0.2/docs/tutorials/local_rag/
+* https://medium.com/@mrcoffeeai/conversational-chatbot-trained-on-own-data-streamlit-and-langchain-a45ea5a9dc0f
+* https://github.com/y-pred/Langchain/blob/main/Langchain%202.0/RAG_Conversational_Chatbot.ipynb
