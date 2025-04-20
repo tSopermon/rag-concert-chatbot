@@ -1,6 +1,6 @@
 import re
 from langchain_core.documents import Document
-from langchain_text_splitters import CharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 
 def is_concert_related(text, CONCERT_RELATED_KEYWORDS):
@@ -22,10 +22,9 @@ def get_vector_store(text, embeddings):
     processed_text = re.sub(r'\s+', ' ', text)
     processed_text = re.sub(r'[^a-zA-Z0-9\s]', '', processed_text)
     documents = [Document(page_content=processed_text)]
-    text_splitter = CharacterTextSplitter(separator="\n\n",
-                                          chunk_size=300,
-                                          chunk_overlap=100,
-                                          length_function=len)
+    text_splitter = RecursiveCharacterTextSplitter(chunk_size=200,
+                                                   chunk_overlap=20,
+                                                   length_function=len)
     chunks = text_splitter.split_documents(documents)
     chunk_texts = [chunk.page_content for chunk in chunks]
     vector_store = Chroma.from_texts(texts=chunk_texts,
