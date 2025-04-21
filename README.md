@@ -4,6 +4,7 @@ A Streamlit-powered chatbot that answers questions about concerts using LangChai
 
 ![Streamlit App](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 ![LangChain](https://img.shields.io/badge/LangChain-00A67E?style=for-the-badge)
+![Ollama](https://img.shields.io/badge/Ollama-F2F2F2?style=for-the-badge)
 ![ChromaDB](https://img.shields.io/badge/ChromaDB-FFD43B?style=for-the-badge)
 
 ## Features
